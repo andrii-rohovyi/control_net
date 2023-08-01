@@ -1,0 +1,9 @@
+!pip3 install einops
+!pip3 install transformers
+!pip3 install open_clip_torch
+!pip3 install gradio
+!pip3 install pytorch_lightning
+!pip3 install omegaconf
+!pip3 install addict
+!pip3 install yapf
+!pip install pytorch-lightning==1.6.5
