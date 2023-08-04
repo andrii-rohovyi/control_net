@@ -18,7 +18,7 @@ from cldm.ddim_hacked import DDIMSampler
 apply_hed = HEDdetector()
 
 model = create_model('./models/cldm_v15.yaml').cpu()
-model.load_state_dict(load_state_dict('./models/control_sd15_scribble.pth', location='cuda'))
+model.load_state_dict(load_state_dict('./models/control_sd15_scribble.pth', location='cuda'), strict=False)
 model = model.cuda()
 ddim_sampler = DDIMSampler(model)
 
@@ -99,4 +99,4 @@ with block:
     run_button.click(fn=process, inputs=ips, outputs=[result_gallery])
 
 
-block.launch(server_name='0.0.0.0')
+block.launch(server_name='0.0.0.0', share=True)
