@@ -15,7 +15,7 @@ from cldm.ddim_hacked import DDIMSampler
 
 
 model = create_model('./models/cldm_v15.yaml').cpu()
-model.load_state_dict(load_state_dict('./models/control_sd15_scribble.pth', location='cuda'))
+model.load_state_dict(load_state_dict('./models/control_sd15_scribble.pth', location='cuda'), strict=False)
 model = model.cuda()
 ddim_sampler = DDIMSampler(model)
 
@@ -68,7 +68,7 @@ with block:
         gr.Markdown("## Control Stable Diffusion with Scribble Maps")
     with gr.Row():
         with gr.Column():
-            input_image = gr.Image(source='upload', type="numpy")
+            input_image = gr.Image(source='canvas', tool='sketch', type="numpy")
             prompt = gr.Textbox(label="Prompt")
             run_button = gr.Button(label="Run")
             with gr.Accordion("Advanced options", open=False):
@@ -89,4 +89,4 @@ with block:
     run_button.click(fn=process, inputs=ips, outputs=[result_gallery])
 
 
-block.launch(server_name='0.0.0.0', )
+block.launch(server_name='0.0.0.0', share=True)
