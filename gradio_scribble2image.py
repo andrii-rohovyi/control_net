@@ -67,10 +67,12 @@ def process(input_image, prompt, a_prompt, n_prompt, num_samples, image_resoluti
     return [255 - detected_map] + results
 
 
-block = gr.Blocks().queue()
+block = gr.Blocks(
+    css=".gradio-container { background-image: url('https://www.unsw.edu.au/content/unsw-sites/au/en/research/cphce/research/prevention-management-of-long-term-conditions/health-eliteracy-for-prevention-in-general-practice/_jcr_content/root/responsivegrid-layout-fixed-width/responsivegrid-full-top/column_layout_copy_8_1313437480/par_1/column_layout_1839258726/par_3_1/image.coreimg.82.1170.png/1684381048485/2023-05-unsw-logo-portrait-transparent-v2.png')}").queue()
 with block:
     with gr.Row():
         gr.Markdown("## Control Stable Diffusion with Scribble Maps")
+
     with gr.Row():
         with gr.Column():
             input_image = gr.Sketchpad(shape=(30, 30),
